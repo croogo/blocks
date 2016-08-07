@@ -1,22 +1,12 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CroogoBlocksInitialMigration extends AbstractMigration
+class BlocksInitialMigration extends AbstractMigration
 {
-
-    public $autoId = false;
-
     public function up()
     {
-        $table = $this->table('blocks');
-        $table
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 20,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
+
+        $this->table('blocks')
             ->addColumn('region_id', 'integer', [
                 'default' => null,
                 'limit' => 20,
@@ -38,7 +28,7 @@ class CroogoBlocksInitialMigration extends AbstractMigration
                 'null' => false,
             ])
             ->addColumn('show_title', 'boolean', [
-                'default' => 1,
+                'default' => true,
                 'limit' => null,
                 'null' => false,
             ])
@@ -120,15 +110,7 @@ class CroogoBlocksInitialMigration extends AbstractMigration
             )
             ->create();
 
-        $table = $this->table('regions');
-        $table
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
+        $this->table('regions')
             ->addColumn('title', 'string', [
                 'default' => null,
                 'limit' => 100,
@@ -176,7 +158,6 @@ class CroogoBlocksInitialMigration extends AbstractMigration
                 ['unique' => true]
             )
             ->create();
-
     }
 
     public function down()
